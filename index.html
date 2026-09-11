@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Azoş'a</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#050507;color:#f5f2ee;font-family:Georgia,"Times New Roman",serif}
+  body{position:relative}
+  .noise{position:fixed;inset:-50%;opacity:.035;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");animation:noise .25s steps(2) infinite}
+  .glow{position:fixed;width:55vw;height:55vw;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(180,165,145,.08),transparent 65%);filter:blur(8px);pointer-events:none}
+  .scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;opacity:0;visibility:hidden;transform:scale(1.025);transition:opacity 1s ease,transform 1.3s ease,visibility 1s}
+  .scene.active{opacity:1;visibility:visible;transform:scale(1)}
+  .content{max-width:720px}
+  .eyebrow{font-family:Arial,sans-serif;letter-spacing:.28em;text-transform:uppercase;font-size:10px;color:#aaa39b;margin-bottom:24px}
+  h1{font-size:clamp(42px,9vw,86px);font-weight:400;letter-spacing:.02em;margin:0 0 28px}
+  h2{font-size:clamp(30px,6vw,54px);font-weight:400;line-height:1.15;margin:0 0 30px}
+  p{font-size:clamp(18px,3.2vw,26px);line-height:1.7;margin:0;color:#ddd8d1}
+  .small{font-size:15px;line-height:1.7;color:#9f9a94}
+  .highlight{color:#fff}
+  button{margin-top:42px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#eee;padding:14px 26px;border-radius:999px;font:14px Arial,sans-serif;letter-spacing:.08em;cursor:pointer;transition:.35s}
+  button:hover{background:#f2eee8;color:#080809;transform:translateY(-2px)}
+  .choices{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:35px}
+  .choices button{margin:0;font-size:13px}
+  .answer{min-height:28px;margin-top:28px;opacity:0;transform:translateY(8px);transition:.7s}
+  .answer.show{opacity:1;transform:translateY(0)}
+  .line{width:60px;height:1px;background:rgba(255,255,255,.35);margin:30px auto}
+  .progress{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:10}
+  .dot{width:5px;height:5px;border-radius:50%;background:#4b4947;transition:.4s}
+  .dot.on{background:#eee;transform:scale(1.5)}
+  .corner{position:fixed;top:22px;right:24px;font:10px Arial,sans-serif;letter-spacing:.2em;color:#777;z-index:10}
+  .final h2{font-size:clamp(28px,5vw,50px)}
+  .fade{animation:fade 2s ease both}
+  @keyframes fade{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+  @keyframes noise{0%{transform:translate(0,0)}25%{transform:translate(2%, -1%)}50%{transform:translate(-1%,2%)}75%{transform:translate(1%,1%)}100%{transform:translate(-2%,-2%)}}
+  @media(max-width:600px){.choices{flex-direction:column;align-items:center}.choices button{width:min(290px,90vw)}}
+</style>
+</head>
+<body>
+<div class="glow"></div><div class="noise"></div>
+<div class="corner">AZOŞ · MEHMET</div>
+
+<section class="scene active" id="s0"><div class="content fade">
+  <div class="eyebrow">Sana söylemek istediğim birkaç şey var</div>
+  <h1>Azoş...</h1>
+  <p>Bu sefer tek bir paragraf yazıp geçmek istemedim.</p>
+  <button onclick="next()">BAŞLA</button>
+</div></section>
+
+<section class="scene" id="s1"><div class="content">
+  <div class="eyebrow">Önce ben</div>
+  <h2>Bu siteyi seni bir şeye ikna etmek için yapmadım.</h2>
+  <p>Kendimi haklı çıkarmak için de yapmadım.<br><br>
+  Sadece sana, söylemek istediklerimi gerçekten söylemek istedim.</p>
+  <button onclick="next()">DEVAM ET</button>
+</div></section>
+
+<section class="scene" id="s2"><div class="content">
+  <div class="eyebrow">Söylemem gereken ilk şey</div>
+  <h2>Seni anlamadım.</h2>
+  <p>Ve bunun benim hatam olduğunu kabul ediyorum.<br><br>
+  O an ne hissettiğini fark edemedim. Seni anlamam gereken yerde anlayamadım.</p>
+  <div class="line"></div><p class="highlight">Bunun için gerçekten özür dilerim.</p>
+  <button onclick="next()">BİR ŞEY DAHA VAR</button>
+</div></section>
+
+<section class="scene" id="s3"><div class="content">
+  <div class="eyebrow">Ben de dürüst olmak istiyorum</div>
+  <h2>Ben de kırıldım.</h2>
+  <p>Seni anlamamış olmam, bana söylenen sözlerin beni üzmediği anlamına gelmiyor.<br><br>
+  Ama bunu seni suçlamak için söylemiyorum. Sadece ikimizin de birbirini kırdığı bir anın içinde olduğumuzu düşünüyorum.</p>
+  <button onclick="next()">DEVAM ET</button>
+</div></section>
+
+<section class="scene" id="s4"><div class="content">
+  <div class="eyebrow">İstediğim şey</div>
+  <p>Ben senden kusursuz olmanı beklemiyorum.<br>
+  Sen de benden kusursuz olmamı bekleme.</p>
+  <div class="line"></div>
+  <p>Bazen birbirimizi anlamayabiliriz.<br>Bazen yanlış şeyler söyleyebiliriz.</p>
+  <div class="line"></div>
+  <h2>Önemli olan sonrasında ne yaptığımız.</h2>
+  <button onclick="next()">DEVAM ET</button>
+</div></section>
+
+<section class="scene" id="s5"><div class="content">
+  <div class="eyebrow">Bunu bilmeni istiyorum</div>
+  <h2>Azoş, sen benim için düşündüğünden çok daha değerlisin.</h2>
+  <p>Belki bunu sana yeterince hissettiremedim.<br><br>
+  Ama seni gerçekten önemsiyorum.</p>
+  <button onclick="next()">BİR SONRAKİ</button>
+</div></section>
+
+<section class="scene" id="s6"><div class="content">
+  <div class="eyebrow">Bizim için</div>
+  <h2>Ben bu yaşananların ilişkimizi bitiren şey olmasını istemiyorum.</h2>
+  <p>Tam tersine... birbirimizi nasıl daha iyi anlayacağımızı bize öğreten bir şey olmasını istiyorum.</p>
+  <div class="line"></div>
+  <p class="highlight">Birbirimizi daha iyi sevmeyi öğrenmemizi istiyorum.</p>
+  <button onclick="next()">DEVAM ET</button>
+</div></section>
+
+<section class="scene" id="s7"><div class="content">
+  <div class="eyebrow">Sana baskı yapmak istemiyorum</div>
+  <h2>Şu an benden ne istiyorsun?</h2>
+  <div class="choices">
+    <button onclick="choose('Zamana ihtiyacım var.')">BİRAZ ZAMANA İHTİYACIM VAR</button>
+    <button onclick="choose('Konuşmak istiyorum.')">KONUŞMAK İSTİYORUM</button>
+    <button onclick="choose('Söyleyeceklerim var.')">SÖYLEYECEKLERİM VAR</button>
+  </div>
+  <p class="answer" id="answer"></p>
+</div></section>
+
+<section class="scene final" id="s8"><div class="content">
+  <div class="eyebrow">Son bir şey</div>
+  <h2>Azoş...</h2>
+  <p>Seni anlamadığım için özür dilerim.<br><br>
+  Bundan sonra seni anlamak için daha çok çabalayacağım.</p>
+  <div class="line"></div>
+  <p>Umarım bu yaşadığımız şey sonumuz değil...<br><br>
+  <span class="highlight">birbirimizi daha iyi öğrenmeye başladığımız yer olur.</span></p>
+  <div class="line"></div>
+  <p class="highlight">Seni seviyorum.</p>
+  <p class="small" style="margin-top:22px">— Mehmet</p>
+</div></section>
+
+<div class="progress" id="progress"></div>
+<script>
+let current=0;
+const scenes=[...document.querySelectorAll('.scene')];
+const progress=document.getElementById('progress');
+scenes.forEach((_,i)=>{const d=document.createElement('span');d.className='dot'+(i===0?' on':'');progress.appendChild(d)});
+function next(){
+  if(current>=scenes.length-1)return;
+  scenes[current].classList.remove('active');
+  current++;
+  scenes[current].classList.add('active');
+  [...progress.children].forEach((d,i)=>d.classList.toggle('on',i===current));
+}
+function choose(text){
+  const a=document.getElementById('answer');
+  const replies={
+    'Biraz zamana ihtiyacım var.':'Tamam. Sana alan bırakacağım. Hazır olduğunda konuşabiliriz.',
+    'Konuşmak istiyorum.':'O zaman bu sefer gerçekten seni dinlemek istiyorum.',
+    'Söyleyeceklerim var.':'Söyle. Bu sefer kendimi savunmadan önce seni anlamaya çalışacağım.'
+  };
+  a.textContent=replies[text];
+  a.classList.add('show');
+  setTimeout(next,2200);
+}
+document.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key==='ArrowRight')next()});
+</script>
+</body>
+</html>
